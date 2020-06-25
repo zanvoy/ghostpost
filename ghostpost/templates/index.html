@@ -1,0 +1,24 @@
+<h1>Sort by: <a href='{% url 'homepage' %}'>Newest</a> || <a href='{% url 'top' %}'>Top</a> ||
+ <a href='{% url 'boast' %}'>Boast</a> || <a href='{% url 'roast' %}'>Roast</a></h1>
+
+<a href='{% url 'addpost' %}'>Make a post</a>
+<ul>
+    {% for i in data%}
+    <li>
+        {% if i.is_roast == True%}
+        🔥🔥🔥Roast🔥🔥🔥
+        {% elif i.is_roast == False%}
+        Boast
+        {% endif %}
+        <br>
+        Date: {{i.date}}
+        <br>
+        <b>Score: {{i.sum}}</b>
+        <a href='{% url 'upvote' id=i.id %}'>Up:</a> {{i.up}}
+        <a href='{% url 'downvote' id=i.id %}'>Down:</a> {{i.down}}
+        <br>
+        {{i.content}}
+        <br>
+    </li>
+    {% endfor%}
+</ul>
