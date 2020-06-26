@@ -16,13 +16,13 @@ def top(request):
     return render(request, 'index.html', {'data':data})
 
 def boast(request):
-    data = Broast.objects.all().order_by('is_roast')
+    data = Broast.objects.filter(is_roast=False)
     for item in data:
         item.sum = item.up - item.down
     return render(request, 'index.html', {'data':data})
 
 def roast(request):
-    data = Broast.objects.all().order_by('-is_roast')
+    data = Broast.objects.filter(is_roast=True)
     for item in data:
         item.sum = item.up - item.down
     return render(request, 'index.html', {'data':data})
